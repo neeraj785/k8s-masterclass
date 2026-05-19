@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DevOps Masterclass Sandbox</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background: #f4f6f9; }
+        .container { background: white; padding: 30px; display: inline-block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; }
+        #api-data { font-weight: bold; color: #27ae60; font-size: 1.2em; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DevOps Masterclass Application</h1>
+        <p>Status: Frontend is connected successfully!</p>
+        <div id="api-data">Loading message from Backend API...</div>
+    </div>
+
+    <script>
+        // Calls the node server helper route to fetch from the backend container safely
+        fetch('/api/message')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('api-data').innerText = "Backend says: " + data.message;
+            })
+            .catch(err => {
+                document.getElementById('api-data').innerText = "Error linking to backend API.";
+            });
+    </script>
+</body>
+</html>
